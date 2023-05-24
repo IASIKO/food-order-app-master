@@ -27,7 +27,7 @@ const Checkout = (props) => {
 
     const enteredNameIsValid = !isEmpty(enteredName);
     const enteredStreetIsValid = !isEmpty(enteredStreet);
-    const enteredPostalIsValid = isFiveChars(enteredPostal);
+    const enteredPostalIsValid = !isFiveChars(enteredPostal);
     const enteredCityIsValid = !isEmpty(enteredCity);
 
     console.log(enteredStreetIsValid);
@@ -56,6 +56,7 @@ const Checkout = (props) => {
       postalCode: enteredPostal,
       city: enteredCity,
     });
+
   };
 
   return (
