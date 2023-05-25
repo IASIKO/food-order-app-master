@@ -27,11 +27,8 @@ const Checkout = (props) => {
 
     const enteredNameIsValid = !isEmpty(enteredName);
     const enteredStreetIsValid = !isEmpty(enteredStreet);
-    const enteredPostalIsValid = !isFiveChars(enteredPostal);
+    const enteredPostalIsValid = isFiveChars(enteredPostal);
     const enteredCityIsValid = !isEmpty(enteredCity);
-
-    console.log(enteredStreetIsValid);
-    console.log(enteredPostalIsValid);
 
     setFormInputsValidity({
       name: enteredNameIsValid,
@@ -46,7 +43,7 @@ const Checkout = (props) => {
       enteredPostalIsValid &&
       enteredCityIsValid;
 
-    if (formIsValid) {
+    if (!formIsValid) {
       return;
     }
 
@@ -56,7 +53,6 @@ const Checkout = (props) => {
       postalCode: enteredPostal,
       city: enteredCity,
     });
-
   };
 
   return (
@@ -70,6 +66,7 @@ const Checkout = (props) => {
         <input type="text" id="name" ref={nameInputRef} />
         {!formInputsValidity.name && <p>Please enter a valid name!</p>}
       </div>
+
       <div
         className={`${classes.control} ${
           formInputsValidity.street ? "" : classes.invalid
@@ -79,6 +76,7 @@ const Checkout = (props) => {
         <input type="text" id="street" ref={streetInputRef} />
         {!formInputsValidity.street && <p>Please enter a valid street!</p>}
       </div>
+
       <div
         className={`${classes.control} ${
           formInputsValidity.postalCode ? "" : classes.invalid
@@ -90,6 +88,7 @@ const Checkout = (props) => {
           <p>Please enter a valid Postal Code (5 characters)!</p>
         )}
       </div>
+
       <div
         className={`${classes.control} ${
           formInputsValidity.city ? "" : classes.invalid
@@ -99,6 +98,7 @@ const Checkout = (props) => {
         <input type="text" id="city" ref={cityInputRef} />
         {!formInputsValidity.city && <p>Please enter a valid city!</p>}
       </div>
+
       <div className={classes.actions}>
         <button type="button" onClick={props.onCancel}>
           Cancel
